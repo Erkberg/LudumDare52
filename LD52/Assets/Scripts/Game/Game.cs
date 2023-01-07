@@ -10,6 +10,8 @@ public class Game : MonoBehaviour
     public GameUI ui;
     public GameRefs refs;
     public GameState state;
+    public GameData data;
+    public GameProgress progress;
     public new GameAudio audio;
 
     private void Awake()

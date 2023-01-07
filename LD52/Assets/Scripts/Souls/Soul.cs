@@ -66,6 +66,7 @@ public class Soul : MonoBehaviour
                 break;
 
             case State.Essence:
+                rb.velocity = Vector3.zero;
                 mesh.gameObject.SetActive(false);
                 essence.gameObject.SetActive(true);
                 break;
@@ -102,6 +103,15 @@ public class Soul : MonoBehaviour
             if(toolArea && state == State.Moving)
             {
                 TakeDamage(toolArea.tool.GetDamage());
+            }
+        }
+
+        ToolProjectile toolProjectile = other.GetComponent<ToolProjectile>();
+        {
+            if (toolProjectile && state == State.Moving)
+            {
+                TakeDamage(toolProjectile.tool.GetDamage());
+                toolProjectile.OnEnteredSoul();
             }
         }
     }
