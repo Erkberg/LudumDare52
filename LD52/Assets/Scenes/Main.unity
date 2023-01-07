@@ -553,6 +553,53 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!1 &357073876
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 357073877}
+  - component: {fileID: 357073878}
+  m_Layer: 0
+  m_Name: Focus
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &357073877
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 357073876}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1959037463}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &357073878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 357073876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6617dc2fb4da4434c9a4674c163c3fd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCam: {fileID: 963194227}
+  fovFocussed: 50
+  fovUnfocussed: 60
 --- !u!1 &379584611
 GameObject:
   m_ObjectHideFlags: 0
@@ -677,7 +724,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &401312227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -865,6 +912,7 @@ MonoBehaviour:
   tools: {fileID: 2002834980}
   stats: {fileID: 408404111}
   abilities: {fileID: 1536540524}
+  focus: {fileID: 357073878}
 --- !u!4 &474987743
 Transform:
   m_ObjectHideFlags: 0
@@ -7333,8 +7381,8 @@ MonoBehaviour:
   area: {fileID: 0}
   projectilePrefab: {fileID: 0}
   splineObjects: {fileID: 308872995}
-  laserObject: {fileID: 1757802955}
-  splineInstantiate: {fileID: 0}
+  laserSplineClose: {fileID: 0}
+  laserSplineFar: {fileID: 0}
   scaleFocussed: {x: 0.33, y: 0.33, z: 2}
   scaleUnfocussed: {x: 1, y: 1, z: 1}
 --- !u!1 &1475322239
@@ -7735,6 +7783,7 @@ Transform:
   - {fileID: 1240256935}
   - {fileID: 843722126}
   - {fileID: 1168101293}
+  - {fileID: 357073877}
   m_Father: {fileID: 474987743}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

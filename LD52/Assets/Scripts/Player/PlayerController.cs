@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     public PlayerTools tools;
     public PlayerStats stats;
     public PlayerAbilities abilities;
+    public PlayerFocus focus;
 
     public bool IsControllable()
     {

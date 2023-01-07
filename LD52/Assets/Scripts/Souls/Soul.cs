@@ -117,7 +117,7 @@ public class Soul : MonoBehaviour
         {
             if (toolProjectile && state == State.Moving)
             {
-                TakeDamage(toolProjectile.tool.GetDamage());
+                TakeDamage(toolProjectile.GetDamage());
                 toolProjectile.OnEnteredSoul();
             }
         }
