@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public PlayerMovement movement;
+    public PlayerBody body;
     public PlayerTools tools;
     public PlayerStats stats;
     public PlayerAbilities abilities;
