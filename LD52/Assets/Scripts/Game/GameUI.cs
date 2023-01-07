@@ -14,6 +14,6 @@ public class GameUI : MonoBehaviour
 
     public void OnLevelUp()
     {
-        Game.inst.progress.IncreaseToolLevel(Tool.Id.Missile);
+        Game.inst.progress.IncreaseToolLevel(Tool.Id.Laser);
     }
 }

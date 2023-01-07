@@ -34,6 +34,21 @@ public class GameInput : MonoBehaviour
 
     public bool GetDashUp()
     {
-        return controls.Player.Dash.WasReleasedThisFrame();
+        return controls.Player.Focus.WasReleasedThisFrame();
+    }
+
+    public bool GetFocus()
+    {
+        return controls.Player.Focus.WasPerformedThisFrame();
+    }
+
+    public bool GetFocusDown()
+    {
+        return controls.Player.Focus.WasPressedThisFrame();
+    }
+
+    public bool GetFocusUp()
+    {
+        return controls.Player.Focus.WasReleasedThisFrame();
     }
 }

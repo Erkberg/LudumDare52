@@ -6,6 +6,7 @@ using UnityEngine;
 public class ToolLevelData
 {
     public int level;
+    public string message;
     public float damage;
     public float cooldown;
     public float range;

@@ -32,7 +32,10 @@ public class Tool : MonoBehaviour
     protected virtual void Update()
     {
         CheckCooldown();
+        OnUpdate();
     }
+
+    protected virtual void OnUpdate() { }
 
     protected virtual void CheckCooldown()
     {
