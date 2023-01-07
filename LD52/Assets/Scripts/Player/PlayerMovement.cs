@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     public PlayerController pc;
     public Rigidbody rb;
     public Transform cam;
+    public Transform minimapCam;
 
     public float maxVertAngle = 80f;
 
@@ -44,5 +45,6 @@ public class PlayerMovement : MonoBehaviour
         vertRot = Mathf.Clamp(vertRot, -maxVertAngle, maxVertAngle);
 
         cam.localRotation = Quaternion.Slerp(cam.localRotation, Quaternion.Euler(vertRot, horRot, 0f), pc.stats.GetLookSpeed() * Time.deltaTime);
+        minimapCam.localRotation = Quaternion.Slerp(minimapCam.localRotation, Quaternion.Euler(90f, horRot, 0f), pc.stats.GetLookSpeed() * Time.deltaTime);
     }
 }
