@@ -259,11 +259,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9093464850297144797}
-  - component: {fileID: 9093464850297144800}
+  - component: {fileID: 4230617626972208013}
   - component: {fileID: 9093464850297144803}
   - component: {fileID: 9093464850297144802}
-  m_Layer: 0
-  m_Name: HoveringSoul
+  m_Layer: 7
+  m_Name: ChargingSoul
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -286,7 +286,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9093464850297144800
+--- !u!114 &4230617626972208013
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -295,19 +295,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 9093464850297144796}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1f840c92ccd0e14eaab21f25105b88d, type: 3}
+  m_Script: {fileID: 11500000, guid: c40ee0322c89a014e8fe59f94079271e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 1
+  id: 2
   state: 0
   rb: {fileID: 9093464850297144803}
   mesh: {fileID: 9093464850739611269}
   essence: {fileID: 9093464850110539139}
-  maxHealth: 2
+  maxHealth: 3
   currentHealth: 0
-  moveSpeed: 2
-  spawnY: 1.5
-  expValue: 1
+  moveSpeed: 16
+  spawnY: 0
+  expValue: 2
 --- !u!54 &9093464850297144803
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -317,7 +317,7 @@ Rigidbody:
   m_GameObject: {fileID: 9093464850297144796}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 1
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
