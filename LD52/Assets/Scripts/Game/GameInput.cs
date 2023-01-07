@@ -21,4 +21,19 @@ public class GameInput : MonoBehaviour
     {
         return controls.Player.Look.ReadValue<Vector2>();
     }
+
+    public bool GetDash()
+    {
+        return controls.Player.Dash.WasPerformedThisFrame();
+    }
+
+    public bool GetDashDown()
+    {
+        return controls.Player.Dash.WasPressedThisFrame();
+    }
+
+    public bool GetDashUp()
+    {
+        return controls.Player.Dash.WasReleasedThisFrame();
+    }
 }

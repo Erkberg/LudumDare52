@@ -10,11 +10,15 @@ public class PlayerMovement : MonoBehaviour
     public Transform cam;
     public Transform minimapCam;
 
+    public float maxDashDuration = 0.33f;
+    public float dashMultiplier = 3.33f;
     public float maxVertAngle = 80f;
 
     private GameInput input;
     private float vertRot = 0f;
     private float horRot = 0f;
+    private bool isDashing;
+    private float dashDurationPassed;
 
     private void Awake()
     {
@@ -25,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if(pc.IsControllable())
         {
+            CheckDash();
             Move();
             Look();
         }
@@ -35,6 +40,10 @@ public class PlayerMovement : MonoBehaviour
         Vector3 movement = cam.forward * input.GetMove().y + cam.right * input.GetMove().x;
         movement.y = Physics.gravity.y;
         movement *= pc.stats.GetMoveSpeed();
+        if(isDashing)
+        {
+            movement *= dashMultiplier;
+        }
         rb.velocity = movement;
     }
 
@@ -46,5 +55,25 @@ public class PlayerMovement : MonoBehaviour
 
         cam.localRotation = Quaternion.Slerp(cam.localRotation, Quaternion.Euler(vertRot, horRot, 0f), pc.stats.GetLookSpeed() * Time.deltaTime);
         minimapCam.localRotation = Quaternion.Slerp(minimapCam.localRotation, Quaternion.Euler(90f, horRot, 0f), pc.stats.GetLookSpeed() * Time.deltaTime);
+    }
+
+    private void CheckDash()
+    {
+        if(isDashing)
+        {
+            if(input.GetDashUp() || dashDurationPassed >= maxDashDuration)
+            {
+                isDashing = false;
+            }
+            else
+            {
+                dashDurationPassed += Time.deltaTime;
+            }
+        }
+        else if(input.GetDashDown())
+        {
+            dashDurationPassed = 0f;
+            isDashing = true;
+        }
     }
 }
