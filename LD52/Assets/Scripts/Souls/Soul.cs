@@ -12,6 +12,7 @@ public class Soul : MonoBehaviour
     public float maxHealth;
     public float currentHealth;
     public float moveSpeed;
+    public float spawnY;
 
     protected Transform player;
 

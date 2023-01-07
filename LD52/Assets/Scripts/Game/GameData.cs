@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameData : MonoBehaviour
 {
     public List<ToolData> toolData;
+    public List<LevelData> levelData;
 
     public ToolData GetToolData(Tool.Id id)
     {
@@ -15,5 +16,10 @@ public class GameData : MonoBehaviour
     {
         int level = Game.inst.progress.GetToolLevel(id);
         return GetToolData(id).levelData.Find(x => x.level == level);
+    }
+
+    public LevelData GetCurrentLevelData()
+    {
+        return levelData.Find(x => x.id == Game.inst.progress.currentLevel);
     }
 }

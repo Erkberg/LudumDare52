@@ -6,6 +6,9 @@ public class GameProgress : MonoBehaviour
 {
     public Dictionary<Tool.Id, int> toolLevels;
 
+    public int currentLevel;
+    public float levelTimePassed;
+
     private void Awake()
     {
         InitDicts();
@@ -22,6 +25,26 @@ public class GameProgress : MonoBehaviour
             { Tool.Id.Easer, 0 },
             { Tool.Id.Laser, 0 }
         };
+    }
+
+    private void Update()
+    {
+        CheckNextLevel();
+    }
+
+    private void CheckNextLevel()
+    {
+        levelTimePassed += Time.deltaTime;
+        if(levelTimePassed > Game.inst.data.GetCurrentLevelData().duration)
+        {
+            StartNextLevel();
+        }
+    }
+
+    private void StartNextLevel()
+    {
+        levelTimePassed = 0f;
+        currentLevel++;
     }
 
     public int GetToolLevel(Tool.Id id)
