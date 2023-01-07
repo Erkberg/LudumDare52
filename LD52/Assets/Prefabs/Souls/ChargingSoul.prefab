@@ -183,7 +183,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &9093464850110539138
 Transform:
   m_ObjectHideFlags: 0
@@ -303,6 +303,7 @@ MonoBehaviour:
   rb: {fileID: 9093464850297144803}
   mesh: {fileID: 9093464850739611269}
   essence: {fileID: 9093464850110539139}
+  flickerRenderers: {fileID: 6630392839383737573}
   maxHealth: 3
   currentHealth: 0
   moveSpeed: 16
@@ -367,6 +368,7 @@ GameObject:
   - component: {fileID: 9093464850739611268}
   - component: {fileID: 9093464850739611274}
   - component: {fileID: 9093464850739611269}
+  - component: {fileID: 6630392839383737573}
   m_Layer: 0
   m_Name: Mesh
   m_TagString: Untagged
@@ -440,3 +442,18 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &6630392839383737573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9093464850739611271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b3b707152b5a164aa4e54822771a8b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderers:
+  - {fileID: 9093464850739611269}
+  flickerFrames: 12

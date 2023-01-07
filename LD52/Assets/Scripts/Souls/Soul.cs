@@ -1,3 +1,4 @@
+using ErksUnityLibrary;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,7 @@ public class Soul : MonoBehaviour
     public Rigidbody rb;
     public MeshRenderer mesh;
     public MeshRenderer essence;
+    public FlickerRenderers flickerRenderers;
     public float maxHealth;
     public float currentHealth;
     public float moveSpeed;
@@ -80,6 +82,8 @@ public class Soul : MonoBehaviour
     protected virtual void TakeDamage(float amount)
     {
         currentHealth -= amount;
+        flickerRenderers.StartFlicker(0.167f);
+
         if(currentHealth <= 0f)
         {
             ChangeState(State.Essence);
