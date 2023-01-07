@@ -15,6 +15,7 @@ public class GameData : MonoBehaviour
     public ToolLevelData GetToolCurrentLevelData(Tool.Id id)
     {
         int level = Game.inst.progress.GetToolLevel(id);
+        Debug.Log(level);
         return GetToolData(id).levelData.Find(x => x.level == level);
     }
 

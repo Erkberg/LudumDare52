@@ -8,6 +8,8 @@ public class GameProgress : MonoBehaviour
 
     public int currentLevel;
     public float levelTimePassed;
+    public float currentPlayerLevel;
+    public float playerExp;
 
     private void Awake()
     {
@@ -52,5 +54,28 @@ public class GameProgress : MonoBehaviour
         return toolLevels[id];
     }
 
+    public void IncreaseToolLevel(Tool.Id id)
+    {
+        toolLevels[id]++;
+    }
 
+    public void OnExpPickup(float value)
+    {
+        playerExp += value;
+        float expNeeded = GetNextLevelExpNeeded();
+        if (playerExp >= expNeeded)
+        {
+            playerExp -= expNeeded;
+            currentPlayerLevel++;
+            expNeeded = GetNextLevelExpNeeded();
+            Game.inst.ui.OnLevelUp();
+        }
+
+        Game.inst.ui.SetLevelProgress(playerExp / expNeeded);
+    }
+
+    public float GetNextLevelExpNeeded()
+    {
+        return 2 + Mathf.Pow(2, currentPlayerLevel + 1);
+    }
 }

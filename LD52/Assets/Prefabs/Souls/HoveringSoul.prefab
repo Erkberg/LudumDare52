@@ -136,10 +136,11 @@ MonoBehaviour:
   rb: {fileID: 9093464850297144803}
   mesh: {fileID: 9093464850739611269}
   essence: {fileID: 9093464850110539139}
-  maxHealth: 3
+  maxHealth: 2
   currentHealth: 0
   moveSpeed: 2
   spawnY: 1.5
+  expValue: 1
 --- !u!54 &9093464850297144803
 Rigidbody:
   m_ObjectHideFlags: 0

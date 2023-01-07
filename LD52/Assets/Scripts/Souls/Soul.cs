@@ -13,6 +13,7 @@ public class Soul : MonoBehaviour
     public float currentHealth;
     public float moveSpeed;
     public float spawnY;
+    public float expValue;
 
     protected Transform player;
 
@@ -96,7 +97,8 @@ public class Soul : MonoBehaviour
         PlayerMagnet playerMagnet = other.GetComponent<PlayerMagnet>();
         if (playerMagnet && state == State.Essence)
         {
-            playerMagnet.OnEssenceEnter();
+            playerMagnet.OnEssenceEnter(expValue);
+            Destroy(gameObject);
         }
 
         ToolArea toolArea = other.GetComponent<ToolArea>();

@@ -1,18 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameUI : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public Image levelProgressFillImage;
+
+    public void SetLevelProgress(float value)
     {
-        
+        levelProgressFillImage.fillAmount = value;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnLevelUp()
     {
-        
+        Game.inst.progress.IncreaseToolLevel(Tool.Id.Missile);
     }
 }
