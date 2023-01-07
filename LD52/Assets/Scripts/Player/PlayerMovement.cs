@@ -1,3 +1,4 @@
+using ErksUnityLibrary;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,9 @@ public class PlayerMovement : MonoBehaviour
     public Transform cam;
     public Transform minimapCam;
 
+    public float moveSpeed = 4f;
+    public float lookSpeed = 33f;
+    public float jumpStrength = 8f;
     public float maxDashDuration = 0.33f;
     public float dashMultiplier = 3.33f;
     public float maxVertAngle = 80f;
@@ -19,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
     private float horRot = 0f;
     private bool isDashing;
     private float dashDurationPassed;
+    private bool doubleJumpAvailable;
 
     private void Awake()
     {
@@ -31,19 +36,24 @@ public class PlayerMovement : MonoBehaviour
         {
             CheckDash();
             Move();
+            CheckJump();
             Look();
+            if(IsGrounded())
+            {
+                doubleJumpAvailable = true;
+            }
         }
     }
 
     private void Move()
     {
-        Vector3 movement = cam.forward * input.GetMove().y + cam.right * input.GetMove().x;
-        movement.y = Physics.gravity.y;
-        movement *= pc.stats.GetMoveSpeed();
-        if(isDashing)
+        Vector3 movement = cam.forward * input.GetMove().y + cam.right * input.GetMove().x;        
+        movement *= moveSpeed;        
+        if (isDashing)
         {
             movement *= dashMultiplier;
         }
+        movement.y = rb.velocity.y;
         rb.velocity = movement;
     }
 
@@ -53,8 +63,24 @@ public class PlayerMovement : MonoBehaviour
         vertRot -= input.GetLook().y;
         vertRot = Mathf.Clamp(vertRot, -maxVertAngle, maxVertAngle);
 
-        cam.localRotation = Quaternion.Slerp(cam.localRotation, Quaternion.Euler(vertRot, horRot, 0f), pc.stats.GetLookSpeed() * Time.deltaTime);
-        minimapCam.localRotation = Quaternion.Slerp(minimapCam.localRotation, Quaternion.Euler(90f, horRot, 0f), pc.stats.GetLookSpeed() * Time.deltaTime);
+        cam.localRotation = Quaternion.Slerp(cam.localRotation, Quaternion.Euler(vertRot, horRot, 0f), lookSpeed * Time.deltaTime);
+        minimapCam.localRotation = Quaternion.Slerp(minimapCam.localRotation, Quaternion.Euler(90f, horRot, 0f), lookSpeed * Time.deltaTime);
+    }
+
+    private void CheckJump()
+    {
+        if (input.GetJumpDown())
+        {
+            if(IsGrounded())
+            {
+                rb.SetVelocityY(jumpStrength);
+            }
+            else if (doubleJumpAvailable)
+            {
+                doubleJumpAvailable = false;
+                rb.SetVelocityY(jumpStrength);
+            }
+        }        
     }
 
     private void CheckDash()
@@ -75,5 +101,10 @@ public class PlayerMovement : MonoBehaviour
             dashDurationPassed = 0f;
             isDashing = true;
         }
+    }
+
+    public bool IsGrounded()
+    {
+        return pc.body.HasCurrentTile();
     }
 }

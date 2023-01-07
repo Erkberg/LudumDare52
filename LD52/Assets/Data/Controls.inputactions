@@ -33,6 +33,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "6b5cded8-0dd5-49bf-bd57-f0257cd34dfe",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Focus",
                     "type": "Button",
                     "id": "bc0a7248-79ee-4a5c-81db-6450e3d39ac8",
@@ -243,17 +252,6 @@
                 },
                 {
                     "name": "",
-                    "id": "e18cb244-ae50-47b1-a9b0-0f7d05f580fd",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Dash",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "0e1125e2-bd9c-456a-bdfd-9dc20095ba15",
                     "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
@@ -293,6 +291,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Focus",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7a2d113e-a381-4c83-bc3b-1a9e02fe4d4a",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "33493ac9-7411-427a-8935-a643ad92bfa6",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

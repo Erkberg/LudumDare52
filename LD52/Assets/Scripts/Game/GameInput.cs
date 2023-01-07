@@ -22,6 +22,21 @@ public class GameInput : MonoBehaviour
         return controls.Player.Look.ReadValue<Vector2>();
     }
 
+    public bool GetJump()
+    {
+        return controls.Player.Jump.WasPerformedThisFrame();
+    }
+
+    public bool GetJumpDown()
+    {
+        return controls.Player.Jump.WasPressedThisFrame();
+    }
+
+    public bool GetJumpUp()
+    {
+        return controls.Player.Jump.WasReleasedThisFrame();
+    }
+
     public bool GetDash()
     {
         return controls.Player.Dash.WasPerformedThisFrame();
@@ -34,7 +49,7 @@ public class GameInput : MonoBehaviour
 
     public bool GetDashUp()
     {
-        return controls.Player.Focus.WasReleasedThisFrame();
+        return controls.Player.Dash.WasReleasedThisFrame();
     }
 
     public bool GetFocus()
