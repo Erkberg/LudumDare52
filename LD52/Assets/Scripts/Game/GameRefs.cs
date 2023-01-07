@@ -6,6 +6,4 @@ public class GameRefs : MonoBehaviour
 {
     public PlayerController player;
     public World world;
-    public Souls souls;
-    public Transform projectilesHolder;
 }

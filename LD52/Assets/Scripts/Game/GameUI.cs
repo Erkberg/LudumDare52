@@ -11,9 +11,4 @@ public class GameUI : MonoBehaviour
     {
         levelProgressFillImage.fillAmount = value;
     }
-
-    public void OnLevelUp()
-    {
-        Game.inst.progress.IncreaseToolLevel(Tool.Id.Laser);
-    }
 }
