@@ -119,7 +119,7 @@ public class Devourer : MonoBehaviour
         {
             currentHuntTarget = null;
             state = State.Moving;
-            if(Random.value < 0.167f)
+            if(Random.value < 0.133f)
             {
                 Vector3 velo = (Game.inst.refs.GetRandomDevourerTarget().position - transform.position).normalized;
                 velo.y = 0f;

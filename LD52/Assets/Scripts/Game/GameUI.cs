@@ -10,6 +10,8 @@ public class GameUI : MonoBehaviour
     public Image levelProgressFillImage;
     public Image enduranceImage;
     public Image salvationImage;
+    public Slider sensitivitySlider;
+    public TextMeshProUGUI sensitivityValue;
 
     public GameObject titleScreen;
     public GameObject endScreen;
@@ -53,5 +55,15 @@ public class GameUI : MonoBehaviour
     public void OnRestartButtonClicked()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void OnSensValueChanged(float value)
+    {
+        sensitivityValue.text = value.ToString("0.00");
+    }
+
+    public float GetSensValue()
+    {
+        return sensitivitySlider.value;
     }
 }

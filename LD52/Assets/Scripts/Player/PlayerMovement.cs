@@ -123,7 +123,8 @@ public class PlayerMovement : MonoBehaviour
 
     private float GetSensitivity()
     {
-        return pc.focus.IsFocussing() ? lookSensitivity * pc.focus.focussedLookSpeedMultiplier : lookSensitivity;
+        float baseSens = pc.focus.IsFocussing() ? lookSensitivity * pc.focus.focussedLookSpeedMultiplier : lookSensitivity;
+        return baseSens * Game.inst.ui.GetSensValue();
     }
 
     private void CheckJump()

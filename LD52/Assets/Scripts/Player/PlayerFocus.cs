@@ -81,7 +81,7 @@ public class PlayerFocus : MonoBehaviour
 
     private float GetRange()
     {
-        return IsFocussing() ? salvationRange * 2 : salvationRange;
+        return IsFocussing() ? salvationRange * 2.33f : salvationRange;
     }
 
     private void DecreaseSalvation()
