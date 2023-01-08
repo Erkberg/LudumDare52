@@ -5194,7 +5194,7 @@ GameObject:
   - component: {fileID: 2074382243716836735}
   - component: {fileID: 2074382243716836728}
   - component: {fileID: 2074382243716836729}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Devourer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5217,7 +5217,7 @@ Transform:
   - {fileID: 2074382241724169487}
   - {fileID: 2685332686065570833}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2074382243716836735
 MonoBehaviour:
@@ -5246,7 +5246,7 @@ MonoBehaviour:
   huntingSpeedMultiplier: 1.67
   offsetY: 2
   targetCheckInterval: 1
-  huntingRange: 16
+  huntingRange: 20
 --- !u!135 &2074382243716836728
 SphereCollider:
   m_ObjectHideFlags: 0
