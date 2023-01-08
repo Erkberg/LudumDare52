@@ -16,14 +16,19 @@ public class PlayerMovement : MonoBehaviour
     public float lookSpeed = 33f;
     public bool jumpEnabled;
     public float jumpStrength = 8f;
+    public bool dashEnabled;
     public float maxDashDuration = 0.33f;
     public float dashMultiplier = 3.33f;
+    public bool runEnabled;
+    public float maxrunDuration = 6.67f;
+    public float runMultiplier = 3.33f;
     public float maxVertAngle = 80f;
 
     private GameInput input;
     private float vertRot = 0f;
     private float horRot = 0f;
     private bool isDashing;
+    private bool isRunning;
     private float dashDurationPassed;
     private bool doubleJumpAvailable;
 
@@ -36,7 +41,16 @@ public class PlayerMovement : MonoBehaviour
     {
         if(pc.IsControllable())
         {
-            CheckDash();
+            if(dashEnabled)
+            {
+                CheckDash();
+            }
+
+            if(runEnabled)
+            {
+                CheckRun();
+            }
+            
             Move();            
             Look();
 
@@ -115,6 +129,26 @@ public class PlayerMovement : MonoBehaviour
             }
         }
         else if(input.GetDashDown())
+        {
+            dashDurationPassed = 0f;
+            isDashing = true;
+        }
+    }
+
+    private void CheckRun()
+    {
+        if (isRunning)
+        {
+            if (input.GetDashUp() || dashDurationPassed >= maxDashDuration)
+            {
+                isDashing = false;
+            }
+            else
+            {
+                dashDurationPassed += Time.deltaTime;
+            }
+        }
+        else if (input.GetDashDown())
         {
             dashDurationPassed = 0f;
             isDashing = true;

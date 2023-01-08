@@ -6,4 +6,6 @@ public class GameRefs : MonoBehaviour
 {
     public PlayerController player;
     public World world;
+    public List<Soul> souls;
+    public List<Devourer> devourers;
 }

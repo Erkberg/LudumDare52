@@ -17,5 +17,7 @@ public class Game : MonoBehaviour
     private void Awake()
     {
         inst = this;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 }
