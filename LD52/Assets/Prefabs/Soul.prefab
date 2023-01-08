@@ -14908,6 +14908,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 64
   rb: {fileID: 9111043857910492379}
   coll: {fileID: 9111043857910492378}
   light: {fileID: 9111043857549616214}

@@ -6,6 +6,7 @@ using UnityEngine;
 public class Soul : MonoBehaviour
 {
     public State state;
+    public LayerMask layerMask;
     [Space]
     public Rigidbody rb;
     public Collider coll;
@@ -77,13 +78,11 @@ public class Soul : MonoBehaviour
 
     private void HandlePositionY()
     {
-        bool hasHit = Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit);
-        if(hasHit)
+        bool hasHit = Physics.Raycast(transform.position + Vector3.up * 20, Vector3.down, out RaycastHit hit, 25f, layerMask);
+        if (hasHit)
         {
-
+            transform.SetPositionY(hit.point.y + offsetY);
         }
-
-        transform.SetPositionY(offsetY);
     }
 
     public void OnSalvation()
