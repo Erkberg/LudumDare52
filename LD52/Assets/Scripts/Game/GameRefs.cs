@@ -18,7 +18,10 @@ public class GameRefs : MonoBehaviour
         targets.Add(player.bodyCC.transform);
         foreach(Soul soul in souls)
         {
-            targets.Add(soul.transform);
+            if(soul.IsHuntable())
+            {
+                targets.Add(soul.transform);
+            }            
         }
 
         targets = targets.OrderBy(x => Vector3.Distance(devPosition, x.position)).ToList();
@@ -47,8 +50,6 @@ public class GameRefs : MonoBehaviour
         }
 
         targets = targets.OrderBy(x => Vector3.Distance(soulPosition, x.position)).ToList();
-        Debug.Log("first " + Vector3.Distance(soulPosition, targets[0].position));
-        Debug.Log("last " + Vector3.Distance(soulPosition, targets.LastOrDefault().position));
         return targets[0];
     }
 }

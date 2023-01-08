@@ -13,6 +13,7 @@ public class Soul : MonoBehaviour
     public ParticleSystem particle;
     public ParticleSystem particleSalvation;
     public ParticleSystem particleDevour;
+    public AudioSource asSave;
     [Space]
     public float moveSpeed = 2f;
     public float fleeSpeedMultiplier = 1.5f;
@@ -87,6 +88,7 @@ public class Soul : MonoBehaviour
 
     public void OnSalvation()
     {
+        asSave.Play();
         Game.inst.state.scorePlayer++;
         particleSalvation.Emit(32);
         Respawn();
@@ -133,8 +135,13 @@ public class Soul : MonoBehaviour
         particle.SetEmissionEnabled(true);
     }
 
+    public bool IsHuntable()
+    {
+        return coll.enabled;
+    }
+
     private Vector3 GetRandomRespawnPosition()
     {
-        return new Vector3(Random.Range(1f, Game.inst.refs.level.size.x), offsetY, Random.Range(1f, Game.inst.refs.level.size.y));
+        return new Vector3(Random.Range(4f, Game.inst.refs.level.size.x), offsetY, Random.Range(4f, Game.inst.refs.level.size.y));
     }
 }

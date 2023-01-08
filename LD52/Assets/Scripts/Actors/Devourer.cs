@@ -13,6 +13,10 @@ public class Devourer : MonoBehaviour
     public new Light light;
     public ParticleSystem particle;
     [Space]
+    public AudioSource asChatter;
+    public AudioSource asHunt;
+    public AudioSource asDevour;
+    [Space]
     public float moveSpeed = 2f;
     public float huntingSpeedMultiplier = 2f;
     public float offsetY = 2f;
@@ -104,13 +108,17 @@ public class Devourer : MonoBehaviour
         Transform closest = Game.inst.refs.GetClosestDevourerTarget(transform.position);
         if(Vector3.Distance(transform.position, closest.position) < huntingRange)
         {
-            currentHuntTarget = closest;
-            state = State.Hunting;
+            if(currentHuntTarget != closest)
+            {
+                currentHuntTarget = closest;
+                asHunt.Play();
+                state = State.Hunting;
+            }            
         }
-        else
+        else if(!currentHuntTarget)
         {
             state = State.Moving;
-            if(Random.value < 0.1f)
+            if(Random.value < 0.167f)
             {
                 Vector3 velo = (Game.inst.refs.GetRandomDevourerTarget().position - transform.position).normalized;
                 velo.y = 0f;
@@ -124,8 +132,10 @@ public class Devourer : MonoBehaviour
         Soul soul = other.GetComponent<Soul>();
         if(soul)
         {
+            asDevour.Play();
             soul.OnDevour();
-            state = State.Moving;
+            currentHuntTarget = null;
+            state = State.Standing;
         }
     }
 
@@ -134,13 +144,18 @@ public class Devourer : MonoBehaviour
         Soul soul = collision.collider.GetComponent<Soul>();
         if (soul)
         {
+            //Debug.Log(name + " devours " + soul.name);
+            asDevour.Play();
             soul.OnDevour();
-            state = State.Moving;
+            currentHuntTarget = null;
+            state = State.Standing;
         }
 
         PlayerBodyCC playerBody = collision.collider.GetComponent<PlayerBodyCC>();
         if(playerBody)
         {
+            asDevour.Play();
+            asChatter.Stop();
             playerBody.OnDevour(transform);
         }
     }

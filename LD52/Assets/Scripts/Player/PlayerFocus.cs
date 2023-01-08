@@ -12,6 +12,7 @@ public class PlayerFocus : MonoBehaviour
     public float salvationIncreaseMultiplier = 0.33f;
     public float salvationDecreaseMultiplier = 2f;
     public float salvationValue;
+    public AudioSource asFocus;
 
     private bool isFocussing;
     private float targetFov;    
@@ -74,6 +75,7 @@ public class PlayerFocus : MonoBehaviour
             DecreaseSalvation();
         }
 
+        asFocus.volume = salvationValue;
         Game.inst.ui.SetSalvation(salvationValue);
     }
 

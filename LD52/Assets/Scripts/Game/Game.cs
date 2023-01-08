@@ -17,18 +17,21 @@ public class Game : MonoBehaviour
     private void Awake()
     {
         inst = this;
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        Time.timeScale = 0f;
     }
 
     public void StartGame()
     {
-
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        Time.timeScale = 1f;
     }
 
     public void EndGame()
     {
-        Debug.Log("end game");
+        ui.OnGameEnd();
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
         Time.timeScale = 0;        
     }
 }
