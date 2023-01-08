@@ -5246,8 +5246,8 @@ MonoBehaviour:
   huntingSpeedMultiplier: 1.67
   offsetY: 2
   targetCheckInterval: 1
-  huntingRange: 20
-  minLightIntensity: 100
+  huntingRange: 16
+  minLightIntensity: 32
 --- !u!135 &2074382243716836728
 SphereCollider:
   m_ObjectHideFlags: 0

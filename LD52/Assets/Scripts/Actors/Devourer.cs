@@ -63,7 +63,7 @@ public class Devourer : MonoBehaviour
                 break;
 
             case State.Standing:
-                if(Random.value < 0.033f)
+                if(Random.value < 0.0167f)
                 {
                     state = State.Moving;
                 }
@@ -105,6 +105,11 @@ public class Devourer : MonoBehaviour
 
     private void CheckTarget()
     {
+        if(state == State.Standing)
+        {
+            return;
+        }
+
         Transform closest = Game.inst.refs.GetClosestDevourerTarget(transform.position);
         if(Vector3.Distance(transform.position, closest.position) < huntingRange)
         {
@@ -150,6 +155,7 @@ public class Devourer : MonoBehaviour
             soul.OnDevour();
             currentHuntTarget = null;
             state = State.Standing;
+            rb.velocity = Vector3.zero;
         }
 
         PlayerBodyCC playerBody = collision.collider.GetComponent<PlayerBodyCC>();
