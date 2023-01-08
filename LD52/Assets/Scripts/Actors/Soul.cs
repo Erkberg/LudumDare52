@@ -15,6 +15,7 @@ public class Soul : MonoBehaviour
     public ParticleSystem particleDevour;
     [Space]
     public float moveSpeed = 2f;
+    public float fleeSpeedMultiplier = 1.5f;
     public float offsetY = 2f;
 
     private Transform currentHunter;
@@ -30,6 +31,7 @@ public class Soul : MonoBehaviour
     private void Update()
     {
         HandleState();
+        HandlePositionY();
     }
 
     private void HandleState()
@@ -64,7 +66,7 @@ public class Soul : MonoBehaviour
     {
         if(hunter)
         {
-            rb.velocity = (transform.position - hunter.position).normalized * moveSpeed;
+            rb.velocity = (transform.position - hunter.position).normalized * moveSpeed * fleeSpeedMultiplier;
         }
         else
         {
@@ -79,6 +81,8 @@ public class Soul : MonoBehaviour
         {
 
         }
+
+        transform.SetPositionY(offsetY);
     }
 
     public void OnSalvation()

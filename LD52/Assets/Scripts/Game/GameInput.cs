@@ -66,4 +66,19 @@ public class GameInput : MonoBehaviour
     {
         return controls.Player.Focus.WasReleasedThisFrame();
     }
+
+    public bool GetCheatButton()
+    {
+        return controls.Player.Cheat.WasPerformedThisFrame();
+    }
+
+    public bool GetCheatButtonDown()
+    {
+        return controls.Player.Cheat.WasPressedThisFrame();
+    }
+
+    public bool GetCheatButtonUp()
+    {
+        return controls.Player.Cheat.WasReleasedThisFrame();
+    }
 }

@@ -20,4 +20,15 @@ public class Game : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
+
+    public void StartGame()
+    {
+
+    }
+
+    public void EndGame()
+    {
+        Debug.Log("end game");
+        Time.timeScale = 0;        
+    }
 }

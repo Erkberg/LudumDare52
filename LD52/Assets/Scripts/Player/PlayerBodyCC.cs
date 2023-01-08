@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class PlayerBodyCC : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public PlayerController pc;
 
-    // Update is called once per frame
-    void Update()
+    public void OnDevour(Transform dev)
     {
-        
+        Game.inst.EndGame();
     }
 }
