@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
     public float maxDashDuration = 0.33f;
     public float dashMultiplier = 3.33f;
     public bool runEnabled;
-    public float maxrunDuration = 6.67f;
+    public float maxRunEndurance = 6.67f;
     public float runMultiplier = 3.33f;
     public float maxVertAngle = 80f;
 
@@ -30,11 +30,13 @@ public class PlayerMovement : MonoBehaviour
     private bool isDashing;
     private bool isRunning;
     private float dashDurationPassed;
+    private float runEnduranceLeft;
     private bool doubleJumpAvailable;
 
     private void Awake()
     {
         input = Game.inst.input;
+        runEnduranceLeft = maxRunEndurance;
     }
 
     private void Update()
@@ -72,6 +74,20 @@ public class PlayerMovement : MonoBehaviour
         if (isDashing)
         {
             movement *= dashMultiplier;
+        }
+
+        if(isRunning && movement.magnitude > 0.1f && runEnduranceLeft > 0f)
+        {
+            runEnduranceLeft -= Time.deltaTime;
+            if(runEnduranceLeft < 0f)
+            {
+                runEnduranceLeft = 0f;
+            }
+            movement *= runMultiplier;
+            if(runEnduranceLeft < 1f)
+            {
+                movement *= runEnduranceLeft;
+            }
         }
 
         if(rb)
@@ -139,20 +155,26 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isRunning)
         {
-            if (input.GetDashUp() || dashDurationPassed >= maxDashDuration)
+            if (input.GetDashUp())
             {
-                isDashing = false;
-            }
-            else
-            {
-                dashDurationPassed += Time.deltaTime;
-            }
+                isRunning = false;
+            }            
         }
         else if (input.GetDashDown())
-        {
-            dashDurationPassed = 0f;
-            isDashing = true;
+        {            
+            isRunning = true;
         }
+
+        if(!isRunning)
+        {
+            runEnduranceLeft += Time.deltaTime;
+            if(runEnduranceLeft > maxRunEndurance)
+            {
+                runEnduranceLeft = maxRunEndurance;
+            }
+        }
+
+        Game.inst.ui.SetEndurance(runEnduranceLeft / maxRunEndurance);
     }
 
     public bool IsGrounded()
