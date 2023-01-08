@@ -12,11 +12,17 @@ public class GameUI : MonoBehaviour
     public Image salvationImage;
     public Slider sensitivitySlider;
     public TextMeshProUGUI sensitivityValue;
+    public TextMeshProUGUI stateText;
 
     public GameObject titleScreen;
     public GameObject endScreen;
     public TextMeshProUGUI scorePlayerText;
     public TextMeshProUGUI scoreDevourerText;
+
+    private void Awake()
+    {
+        stateText.CrossFadeAlpha(0f, 0f, true);
+    }
 
     public void SetLevelProgress(float value)
     {
@@ -25,7 +31,8 @@ public class GameUI : MonoBehaviour
 
     public void SetEndurance(float value)
     {
-        enduranceImage.CrossFadeAlpha(value, 0f, false);
+        //enduranceImage.CrossFadeAlpha(value, 0f, false);
+        enduranceImage.fillAmount = value;
     }
 
     public void SetSalvation(float value)
@@ -65,5 +72,19 @@ public class GameUI : MonoBehaviour
     public float GetSensValue()
     {
         return sensitivitySlider.value;
+    }
+
+    public void ShowState()
+    {
+        StartCoroutine(ShowStateSequence());
+    }
+
+    private IEnumerator ShowStateSequence()
+    {
+        float duration = 1.67f;
+        stateText.text = Game.inst.state.scorePlayer + " : " + Game.inst.state.scoreDevourer;
+        stateText.CrossFadeAlpha(1f, duration, false);
+        yield return new WaitForSeconds(duration * 1.33f);
+        stateText.CrossFadeAlpha(0f, duration, false);
     }
 }
