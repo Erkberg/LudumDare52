@@ -8,6 +8,7 @@ public class PlayerBodyCC : MonoBehaviour
 
     public void OnDevour(Transform dev)
     {
+        pc.movement.LookAtTransform(dev);
         Game.inst.EndGame();
     }
 }

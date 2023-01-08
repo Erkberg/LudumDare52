@@ -23,6 +23,7 @@ public class Devourer : MonoBehaviour
     public float offsetY = 2f;
     public float targetCheckInterval = 1f;
     public float huntingRange = 16f;
+    public float minLightIntensity = 1f;
 
     private Transform currentHuntTarget;
     private float targetCheckIntervalPassed;
@@ -53,7 +54,7 @@ public class Devourer : MonoBehaviour
         {
             case State.Moving:
                 Move();
-                light.intensity = Mathf.Lerp(light.intensity, 0f, Time.deltaTime);
+                light.intensity = Mathf.Lerp(light.intensity, minLightIntensity, Time.deltaTime);
                 break;
 
             case State.Hunting:
@@ -114,8 +115,9 @@ public class Devourer : MonoBehaviour
                 state = State.Hunting;
             }            
         }
-        else if(!currentHuntTarget)
+        else if(!currentHuntTarget || Random.value < 0.067f)
         {
+            currentHuntTarget = null;
             state = State.Moving;
             if(Random.value < 0.167f)
             {

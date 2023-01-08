@@ -116,6 +116,11 @@ public class PlayerMovement : MonoBehaviour
         }        
     }
 
+    public void LookAtTransform(Transform t)
+    {
+        cam.localRotation = Quaternion.LookRotation(t.position - cam.transform.position);
+    }
+
     private float GetSensitivity()
     {
         return pc.focus.IsFocussing() ? lookSensitivity * pc.focus.focussedLookSpeedMultiplier : lookSensitivity;
