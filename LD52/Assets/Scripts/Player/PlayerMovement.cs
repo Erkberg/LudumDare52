@@ -8,11 +8,13 @@ public class PlayerMovement : MonoBehaviour
 {
     public PlayerController pc;
     public Rigidbody rb;
+    public CharacterController cc;
     public Transform cam;
     public Transform minimapCam;
 
     public float moveSpeed = 4f;
     public float lookSpeed = 33f;
+    public bool jumpEnabled;
     public float jumpStrength = 8f;
     public float maxDashDuration = 0.33f;
     public float dashMultiplier = 3.33f;
@@ -35,13 +37,17 @@ public class PlayerMovement : MonoBehaviour
         if(pc.IsControllable())
         {
             CheckDash();
-            Move();
-            CheckJump();
+            Move();            
             Look();
-            if(IsGrounded())
+
+            if(jumpEnabled)
             {
-                doubleJumpAvailable = true;
-            }
+                CheckJump();
+                if (IsGrounded())
+                {
+                    doubleJumpAvailable = true;
+                }
+            }            
         }
     }
 
@@ -53,8 +59,17 @@ public class PlayerMovement : MonoBehaviour
         {
             movement *= dashMultiplier;
         }
-        movement.y = rb.velocity.y;
-        rb.velocity = movement;
+
+        if(rb)
+        {
+            movement.y = rb.velocity.y;
+            rb.velocity = movement;
+        }
+        else if(cc)
+        {
+            movement.y = Physics.gravity.y;
+            cc.Move(movement * Time.deltaTime);
+        }
     }
 
     private void Look()
@@ -64,7 +79,10 @@ public class PlayerMovement : MonoBehaviour
         vertRot = Mathf.Clamp(vertRot, -maxVertAngle, maxVertAngle);
 
         cam.localRotation = Quaternion.Slerp(cam.localRotation, Quaternion.Euler(vertRot, horRot, 0f), lookSpeed * Time.deltaTime);
-        minimapCam.localRotation = Quaternion.Slerp(minimapCam.localRotation, Quaternion.Euler(90f, horRot, 0f), lookSpeed * Time.deltaTime);
+        if(minimapCam)
+        {
+            minimapCam.localRotation = Quaternion.Slerp(minimapCam.localRotation, Quaternion.Euler(90f, horRot, 0f), lookSpeed * Time.deltaTime);
+        }        
     }
 
     private void CheckJump()

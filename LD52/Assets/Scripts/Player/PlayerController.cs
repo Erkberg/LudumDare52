@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     public PlayerMovement movement;
     public PlayerBody body;
+    public PlayerBodyCC bodyCC;
     public PlayerFocus focus;
 
     public bool IsControllable()
