@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
 
     public float moveSpeed = 4f;
     public float lookSpeed = 33f;
+    public float lookSensitivity = 1f;
     public bool jumpEnabled;
     public float jumpStrength = 8f;
     public bool dashEnabled;
@@ -104,8 +105,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Look()
     {
-        horRot += input.GetLook().x;
-        vertRot -= input.GetLook().y;
+        horRot += input.GetLook().x * GetSensitivity();
+        vertRot -= input.GetLook().y * GetSensitivity();
         vertRot = Mathf.Clamp(vertRot, -maxVertAngle, maxVertAngle);
 
         cam.localRotation = Quaternion.Slerp(cam.localRotation, Quaternion.Euler(vertRot, horRot, 0f), lookSpeed * Time.deltaTime);
@@ -113,6 +114,11 @@ public class PlayerMovement : MonoBehaviour
         {
             minimapCam.localRotation = Quaternion.Slerp(minimapCam.localRotation, Quaternion.Euler(90f, horRot, 0f), lookSpeed * Time.deltaTime);
         }        
+    }
+
+    private float GetSensitivity()
+    {
+        return pc.focus.IsFocussing() ? lookSensitivity * pc.focus.focussedLookSpeedMultiplier : lookSensitivity;
     }
 
     private void CheckJump()

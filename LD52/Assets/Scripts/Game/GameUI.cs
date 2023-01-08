@@ -7,6 +7,7 @@ public class GameUI : MonoBehaviour
 {
     public Image levelProgressFillImage;
     public Image enduranceImage;
+    public Image salvationImage;
 
     public void SetLevelProgress(float value)
     {
@@ -16,5 +17,11 @@ public class GameUI : MonoBehaviour
     public void SetEndurance(float value)
     {
         enduranceImage.CrossFadeAlpha(value, 0f, false);
+    }
+
+    public void SetSalvation(float value)
+    {
+        //salvationImage.CrossFadeAlpha(value, 0f, false);
+        salvationImage.fillAmount = value;
     }
 }

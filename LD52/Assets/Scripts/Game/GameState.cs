@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class GameState : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public State state;
+    public int scorePlayer;
+    public int scoreDevourer;
 
-    // Update is called once per frame
-    void Update()
+    public enum State
     {
-        
+        Title,
+        Ingame,
+        End
     }
 }

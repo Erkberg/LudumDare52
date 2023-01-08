@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.06613655, g: 0.09991707, b: 0.24381784, a: 1}
+  m_IndirectSpecularColor: {r: 0.06609411, g: 0.10007991, b: 0.24538186, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -176,6 +176,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 45648546}
+  - component: {fileID: 45648547}
   m_Layer: 0
   m_Name: Level
   m_TagString: Untagged
@@ -202,6 +203,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &45648547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 45648545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47a40eda0d784c343a931d4a6df915b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: {x: 256, y: 256}
 --- !u!1 &139182101
 GameObject:
   m_ObjectHideFlags: 0
@@ -484,6 +498,11 @@ MonoBehaviour:
   mainCam: {fileID: 1773078292}
   fovFocussed: 30
   fovUnfocussed: 60
+  focussedLookSpeedMultiplier: 0.33
+  salvationRange: 16
+  salvationIncreaseMultiplier: 0.33
+  salvationDecreaseMultiplier: 2
+  salvationValue: 0
 --- !u!4 &164791002
 Transform:
   m_ObjectHideFlags: 0
@@ -645,7 +664,8 @@ MonoBehaviour:
   cam: {fileID: 1773078295}
   minimapCam: {fileID: 0}
   moveSpeed: 4
-  lookSpeed: 33
+  lookSpeed: 67
+  lookSensitivity: 1
   jumpEnabled: 0
   jumpStrength: 8
   dashEnabled: 0
@@ -1130,7 +1150,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &829492577
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1149,7 +1169,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 16, y: 16}
+  m_SizeDelta: {x: 4, y: 4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &829492578
 MonoBehaviour:
@@ -1165,7 +1185,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1383,6 +1403,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelProgressFillImage: {fileID: 377684049}
   enduranceImage: {fileID: 1554186067}
+  salvationImage: {fileID: 1017313418}
 --- !u!4 &947113454
 Transform:
   m_ObjectHideFlags: 0
@@ -1444,6 +1465,82 @@ Transform:
   m_Father: {fileID: 416582512}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1017313416
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1017313417}
+  - component: {fileID: 1017313419}
+  - component: {fileID: 1017313418}
+  m_Layer: 5
+  m_Name: Salvation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1017313417
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1017313416}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1316852682}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 64, y: 64}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1017313418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1017313416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.76458645, g: 0.7924528, b: 0.08597367, a: 0.5019608}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: -2413806693520163455, guid: 031551e9ef3f4ad4d866f06611fb772a, type: 3}
+  m_Type: 3
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 0
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1017313419
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1017313416}
+  m_CullTransparentMesh: 1
 --- !u!1001 &1036834979
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6678,6 +6775,7 @@ RectTransform:
   - {fileID: 1297015103}
   - {fileID: 829492577}
   - {fileID: 1554186066}
+  - {fileID: 1017313417}
   m_Father: {fileID: 947113454}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6864,7 +6962,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.060454875, g: 0.3018868, b: 0.046991818, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -6996,6 +7094,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 2073184217}
   world: {fileID: 0}
+  level: {fileID: 45648547}
   souls: []
   devourers: []
 --- !u!4 &1646614133
@@ -7833,6 +7932,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49cee23240487c042a16926eaddaa7db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  state: 0
+  scorePlayer: 0
+  scoreDevourer: 0
 --- !u!4 &2118091101
 Transform:
   m_ObjectHideFlags: 0
